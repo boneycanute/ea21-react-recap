@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import MyFunctionalComponent from "./MyFunctionalComponent";
 import MyClassComponent from "./MyClassComponent";
 import UseReducerExample from "./UseReducerExample";
+import UseMemoExample from "./UseMemoExample";
 
 export const MyContext = createContext();
 
@@ -35,6 +36,8 @@ function App() {
       </div>
       <hr />
       <UseReducerExample />
+      <hr />
+      <UseMemoExample />
     </>
   );
 }
