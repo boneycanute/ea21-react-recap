@@ -3,6 +3,7 @@ import MyFunctionalComponent from "./MyFunctionalComponent";
 import MyClassComponent from "./MyClassComponent";
 import UseReducerExample from "./UseReducerExample";
 import UseMemoExample from "./UseMemoExample";
+import UseCallbackExample from "./UseCallbackExample";
 
 export const MyContext = createContext();
 
@@ -38,6 +39,8 @@ function App() {
       <UseReducerExample />
       <hr />
       <UseMemoExample />
+      <hr />
+      <UseCallbackExample />
     </>
   );
 }
