@@ -1,46 +1,62 @@
-import React, { createContext, useState } from "react";
-import MyFunctionalComponent from "./MyFunctionalComponent";
-import MyClassComponent from "./MyClassComponent";
-import UseReducerExample from "./UseReducerExample";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import ComponentLifeCycleUsingUseEffect from "./ComponentLifeCycleUsingUseEffect";
+import LazyLoadingExample from "./LazyLoadingExample";
 import UseMemoExample from "./UseMemoExample";
-import UseCallbackExample from "./UseCallbackExample";
+import { createContext } from "react";
+import PageNotFound from "./PageNotFound";
+import DynamicSegementExample from "./DynamicSegementExample";
 
 export const MyContext = createContext();
 
 function App() {
-  const [showFunction, setShowFunction] = useState(true);
-  const [showClass, setShowClass] = useState(true);
-  const [data, setData] = useState("Data From App Component");
-
+  const nav = useNavigate();
   return (
     <>
       <button
         onClick={() => {
-          setShowFunction(!showFunction);
+          nav(1);
         }}
       >
-        Toggle Functional Component
+        Forward
       </button>
       <button
         onClick={() => {
-          setShowClass(!showClass);
+          nav(-1);
         }}
       >
-        Toggle Class Component
+        Backward
       </button>
-
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <MyContext.Provider value={data}>
-          {showFunction && <MyFunctionalComponent />}
-          {showClass && <MyClassComponent />}
-        </MyContext.Provider>
-      </div>
-      <hr />
-      <UseReducerExample />
-      <hr />
-      <UseMemoExample />
-      <hr />
-      <UseCallbackExample />
+      <button
+        onClick={() => {
+          nav("/memo");
+        }}
+      >
+        Go to useMemo
+      </button>
+      <ul>
+        <li>
+          <Link to={"/"}>ComponentLifeCycleUsingUseEffect</Link>
+        </li>
+        <li>
+          <Link to={"/lazy"}>LazyLoadingExample</Link>
+        </li>
+        <li>
+          <Link to={"/memo"}>UseMemoExample</Link>
+        </li>
+        <li>
+          <Link to={"/redux"}>Dynamic Segement for Redux</Link>
+        </li>
+        <li>
+          <Link to={"/nodejs"}>Dynamic Segement for Nodejs</Link>
+        </li>
+      </ul>
+      <Routes>
+        <Route path="/" element={<ComponentLifeCycleUsingUseEffect />} />
+        <Route path="/lazy" element={<LazyLoadingExample />} />
+        <Route path="/memo" element={<UseMemoExample />} />
+        <Route path="/:dynamicSegment" element={<DynamicSegementExample />} />
+        <Route path="/*" element={<PageNotFound />} />
+      </Routes>
     </>
   );
 }

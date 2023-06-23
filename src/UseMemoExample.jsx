@@ -1,6 +1,9 @@
 import React, { useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function ExpensiveOperation(count) {
+  console.log("UseMemo wala params : ", useParams());
+
   console.log("Expensive Operation Performed");
   for (var i = 0; i < 1000000000; i++) {
     count++;
